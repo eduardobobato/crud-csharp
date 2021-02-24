@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace crud_csharp.Model
+{
+    public class Meter
+    {
+        public int meterModelId { get; set; }
+        public int meterNumber { get; set; }
+        public string meterFirmwareVersion { get; set; }
+    }
+}
