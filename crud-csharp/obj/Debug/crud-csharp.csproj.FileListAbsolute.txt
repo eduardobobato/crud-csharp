@@ -4,3 +4,5 @@ E:\Projetos\C#\crud-csharp\crud-csharp\bin\Debug\crud-csharp.pdb
 E:\Projetos\C#\crud-csharp\crud-csharp\obj\Debug\crud-csharp.csprojResolveAssemblyReference.cache
 E:\Projetos\C#\crud-csharp\crud-csharp\obj\Debug\crud-csharp.exe
 E:\Projetos\C#\crud-csharp\crud-csharp\obj\Debug\crud-csharp.pdb
+E:\Projetos\C#\crud-csharp\crud-csharp\bin\Debug\YamlDotNet.dll
+E:\Projetos\C#\crud-csharp\crud-csharp\bin\Debug\YamlDotNet.xml

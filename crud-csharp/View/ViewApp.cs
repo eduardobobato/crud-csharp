@@ -1,6 +1,8 @@
 ﻿using crud_csharp.Controller;
+using crud_csharp.enums;
 using crud_csharp.exceptions;
 using crud_csharp.Model;
+using crud_csharp.Service;
 using crud_csharp.ViewObject;
 using System;
 using System.Collections.Generic;
@@ -23,12 +25,12 @@ namespace crud_csharp.View
                 try
                 {
                     Console.Clear();
-                    Console.WriteLine("1 - Insert new endpoint");
-                    Console.WriteLine("2 - Edit endpoint by serial number");
-                    Console.WriteLine("3 - Delete endpoint by serial number");
-                    Console.WriteLine("4 - List all endpoints");
-                    Console.WriteLine("5 - Find endpoint by serial number");
-                    Console.WriteLine("6 - Exit");
+                    Console.WriteLine(I18nService.GetTranslate("INSERT_NEW_ENDPOINT_MENU"));
+                    Console.WriteLine(I18nService.GetTranslate("EDIT_ENDPOINT_MENU"));
+                    Console.WriteLine(I18nService.GetTranslate("DELETE_ENDPOINT_MENU"));
+                    Console.WriteLine(I18nService.GetTranslate("LIST_ALL_ENDPOINT_MENU"));
+                    Console.WriteLine(I18nService.GetTranslate("FIND_ENDPOINT_MENU"));
+                    Console.WriteLine(I18nService.GetTranslate("EXIT_MENU"));
                     input = Console.ReadKey().Key;
                     Console.Clear();
                     switch (input)
@@ -57,7 +59,7 @@ namespace crud_csharp.View
                         case ConsoleKey.NumPad6:
                             break;
                         default:
-                            Console.WriteLine("Invalid input, try again...");
+                            Console.WriteLine(I18nService.GetTranslate("INVALID_INPUT_TRY_AGAIN"));
                             PressAnyKeyToContinue();
                             break;
                     }
@@ -72,16 +74,16 @@ namespace crud_csharp.View
 
         private void InsertEndpointView()
         {
-            Console.WriteLine("Insert new endpoint:");
-            Console.Write("Serial number: ");
+            Console.WriteLine(I18nService.GetTranslate("INSERT_NEW_ENDPOINT"));
+            Console.Write(I18nService.GetTranslate("SERIAL_NUMBER") + ": ");
             var serialNumber = Console.ReadLine();
-            Console.Write("Model id: ");
+            Console.Write(I18nService.GetTranslate("METER_MODEL_ID") + string.Format(" ({0} | {1} | {2} | {3}): ", ModelId.NSX1P2W, ModelId.NSX1P3W, ModelId.NSX1P4W, ModelId.NSX1P5W));
             var modelId = Console.ReadLine();
-            Console.Write("Meter number: ");
+            Console.Write(I18nService.GetTranslate("METER_NUMBER") + ": ");
             var meterNumber = Console.ReadLine();
-            Console.Write("Firmware version: ");
+            Console.Write(I18nService.GetTranslate("METER_FIRMWARE_VERSION") + ": ");
             var firmwareVersion = Console.ReadLine();
-            Console.Write("Switch state: ");
+            Console.Write(I18nService.GetTranslate("SWITCH_STATE") + string.Format(" ({0} | {1} | {2}): ", SwitchState.Disconnected, SwitchState.Connected, SwitchState.Armed));
             var switchState = Console.ReadLine();
             
             var newEndpoint = new EndpointVO()
@@ -94,16 +96,16 @@ namespace crud_csharp.View
             };
 
             var endpoint = endpointController.Create(newEndpoint);
-            Console.WriteLine("Successfully created endpoint.");
+            Console.WriteLine(I18nService.GetTranslate("SUCCESSLY_CREATED_ENDPOINT"));
             PressAnyKeyToContinue();
         }
 
         private void EditEndpointView()
         {
-            Console.WriteLine("Edit endpoint by serial number:");
-            Console.Write("Serial number: ");
+            Console.WriteLine(I18nService.GetTranslate("EDIT_ENDPOINT"));
+            Console.Write(I18nService.GetTranslate("SERIAL_NUMBER") + ": ");
             var serialNumber = Console.ReadLine();
-            Console.Write("Switch state: ");
+            Console.Write(I18nService.GetTranslate("SWITCH_STATE") + string.Format(" ({0} | {1} | {2}): ", SwitchState.Disconnected, SwitchState.Connected, SwitchState.Armed));
             var switchState = Console.ReadLine();
             
             var newEndpoint = new EndpointVO()
@@ -113,24 +115,24 @@ namespace crud_csharp.View
             };
 
             var endpoint = endpointController.Edit(newEndpoint);
-            Console.WriteLine("Successfully edited endpoint.");
+            Console.WriteLine(I18nService.GetTranslate("SUCCESSLY_EDITED_ENDPOINT"));
             PressAnyKeyToContinue();
         }
 
         private void DeleteEndpointView()
         {
-            Console.WriteLine("Delete endpoint by serial number:");
-            Console.Write("Serial number: ");
+            Console.WriteLine(I18nService.GetTranslate("DELETE_ENDPOINT"));
+            Console.Write(I18nService.GetTranslate("SERIAL_NUMBER") + ": ");
             var identifier = Console.ReadLine();
             endpointController.Delete(identifier);
-            Console.WriteLine("Successfully deleted endpoint.");
+            Console.WriteLine(I18nService.GetTranslate("SUCCESSLY_DELETED_ENDPOINT"));
             PressAnyKeyToContinue();
         }
 
         private void ListAllEndpointView()
         {
             var endpointList = endpointController.ListAll();
-            Console.WriteLine("List all endpoint:");
+            Console.WriteLine(I18nService.GetTranslate("LIST_ALL_ENDPOINT"));
             foreach (var endpoint in endpointList)
             {
                 Console.WriteLine(endpoint.ToString());
@@ -140,8 +142,8 @@ namespace crud_csharp.View
 
         private void FindEndpointView()
         {
-            Console.WriteLine("Find endpoint by serial number:");
-            Console.Write("Serial number: ");
+            Console.WriteLine(I18nService.GetTranslate("FIND_ENDPOINT"));
+            Console.Write(I18nService.GetTranslate("SERIAL_NUMBER") + ": ");
             var identifier = Console.ReadLine();
             var endpoint = endpointController.FindOne(identifier);
             Console.WriteLine(endpoint.ToString());
@@ -150,7 +152,7 @@ namespace crud_csharp.View
 
         private void PressAnyKeyToContinue()
         {
-            Console.WriteLine("Press any key to return to menu...");
+            Console.WriteLine(I18nService.GetTranslate("PRESS_ANY_KEY_TO_CONTINUE"));
             Console.ReadKey();
         }
     }

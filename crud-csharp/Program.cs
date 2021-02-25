@@ -1,4 +1,6 @@
-﻿using crud_csharp.View;
+﻿using crud_csharp.enums;
+using crud_csharp.Service;
+using crud_csharp.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,5 @@ namespace crud_csharp
             ViewApp view = new ViewApp();
             view.StartApp();
         }
-
     }
 }

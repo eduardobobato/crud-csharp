@@ -41,13 +41,19 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=9.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.9.1.4\lib\net45\YamlDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\EndpointController.cs" />
     <Compile Include="DAO\EndpointDao.cs" />
     <Compile Include="DAO\IBaseDao.cs" />
-    <Compile Include="enums\ModelId.cs" />
-    <Compile Include="exceptions\AppException.cs" />
+    <Compile Include="Enums\Language.cs" />
+    <Compile Include="Enums\SwitchState.cs" />
+    <Compile Include="Enums\ModelId.cs" />
+    <Compile Include="Exceptions\AppException.cs" />
     <Compile Include="Model\Endpoint.cs" />
     <Compile Include="Model\Meter.cs" />
     <Compile Include="Program.cs" />
@@ -56,14 +62,17 @@
     <Compile Include="Service\DeleteEndpointService.cs" />
     <Compile Include="Service\EditEndpointService.cs" />
     <Compile Include="Service\FindEndpointBySerialNumberService.cs" />
+    <Compile Include="Service\I18nService.cs" />
     <Compile Include="Service\IBaseService.cs" />
     <Compile Include="Service\ListAllEndpointService.cs" />
-    <Compile Include="utils\EndpointValidator.cs" />
+    <Compile Include="Utils\EndpointValidator.cs" />
     <Compile Include="ViewObject\EndpointVO.cs" />
     <Compile Include="View\ViewApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Resourse\locale\EN_US.yml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace crud_csharp.enums
 {
-    enum ModelId
+    public enum ModelId
     {
-        Disconnected = 1,
-        Connected = 1,
-        Armed = 2
+        NSX1P2W = 16,
+        NSX1P3W = 17,
+        NSX1P4W = 18,
+        NSX1P5W = 19,
     }
 }

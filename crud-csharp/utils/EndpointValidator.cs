@@ -1,6 +1,7 @@
 ﻿using crud_csharp.enums;
 using crud_csharp.exceptions;
 using crud_csharp.Model;
+using crud_csharp.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,45 +14,45 @@ namespace crud_csharp.utils
     {
         public static void ValidateModelId(string modelId, Endpoint endpoint)
         {
-            if (modelId == "NSX1P2W")
+            if (modelId.ToUpper() == ModelId.NSX1P2W.ToString().ToUpper())
             {
-                endpoint.meterModelId = 16;
+                endpoint.meterModelId = (int)ModelId.NSX1P2W;
             }
-            else if (modelId == "NSX1P3W")
+            else if (modelId.ToUpper() == ModelId.NSX1P3W.ToString().ToUpper())
             {
-                endpoint.meterModelId = 17;
+                endpoint.meterModelId = (int)ModelId.NSX1P3W;
             }
-            else if (modelId == "NSX1P4W")
+            else if (modelId.ToUpper() == ModelId.NSX1P4W.ToString().ToUpper())
             {
-                endpoint.meterModelId = 18;
+                endpoint.meterModelId = (int)ModelId.NSX1P4W;
             }
-            else if (modelId == "NSX1P5W")
+            else if (modelId.ToUpper() == ModelId.NSX1P5W.ToString().ToUpper())
             {
-                endpoint.meterModelId = 19;
+                endpoint.meterModelId = (int)ModelId.NSX1P5W;
             }
             else
             {
-                throw new AppException("Invalid Meter mode id input.");
+                throw new AppException(I18nService.GetTranslate("INVALID_METER_MODE_INPUT"));
             }
         }
 
         public static void ValidateSwitchState(string switchState, Endpoint endpoint)
         {
-            if (switchState == "Disconnected")
+            if (switchState.ToLower() == SwitchState.Disconnected.ToString().ToLower())
             {
-                endpoint.switchState = (int)ModelId.Disconnected;
+                endpoint.switchState = (int)SwitchState.Disconnected;
             }
-            else if (switchState == "Connected")
+            else if (switchState.ToLower() == SwitchState.Connected.ToString().ToLower())
             {
-                endpoint.switchState = (int)ModelId.Connected;
+                endpoint.switchState = (int)SwitchState.Connected;
             }
-            else if (switchState == "Armed")
+            else if (switchState.ToLower() == SwitchState.Armed.ToString().ToLower())
             {
-                endpoint.switchState = (int)ModelId.Armed;
+                endpoint.switchState = (int)SwitchState.Armed;
             }
             else
             {
-                throw new AppException("Invalid switch state input.");
+                throw new AppException(I18nService.GetTranslate("INVALID_SWITCH_STATE_INPUT"));
             }
         }
     }

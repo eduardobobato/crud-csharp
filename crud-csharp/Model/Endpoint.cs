@@ -1,4 +1,6 @@
-﻿using System;
+﻿using crud_csharp.enums;
+using crud_csharp.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,28 @@ namespace crud_csharp.Model
 
         public override string ToString()
         {
-            return String.Format("Serial number: {0} | Meter model id: {1} | Meter Number: {2} | Meter firmware version: {3} | Switch state: {4}", serialNumber, meterModelId, meterNumber, meterFirmwareVersion, switchState);
+            ModelId meterModelIdLabel = (ModelId)meterModelId;
+            SwitchState switchStateLabel = (SwitchState)switchState;
+            return string.Format("{0}: {1} | " +
+                                 "{2}: {3} | " +
+                                 "{4}: {5} | " +
+                                 "{6}: {7} | " +
+                                 "{8}: {9}",
+                                 I18nService.GetTranslate("SERIAL_NUMBER"), serialNumber,
+                                 I18nService.GetTranslate("METER_MODEL_ID"), meterModelIdLabel,
+                                 I18nService.GetTranslate("METER_NUMBER"), meterNumber,
+                                 I18nService.GetTranslate("METER_FIRMWARE_VERSION"), meterFirmwareVersion,
+                                 I18nService.GetTranslate("SWITCH_STATE"), switchStateLabel);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var toCompareWith = obj as Endpoint;
+            return serialNumber == toCompareWith.serialNumber &&
+                meterModelId == toCompareWith.meterModelId &&
+                meterNumber == toCompareWith.meterNumber &&
+                meterFirmwareVersion == toCompareWith.meterFirmwareVersion &&
+                switchState == toCompareWith.switchState;
         }
     }
 }

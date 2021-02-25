@@ -12,7 +12,7 @@ namespace crud_csharp.Service
     {
         private EndpointDao dao = EndpointDao.GetInstance;
 
-        public List<Endpoint> Execute(string input)
+        public List<Endpoint> Execute(string _ = null)
         {
             return dao.ListAll();
         }

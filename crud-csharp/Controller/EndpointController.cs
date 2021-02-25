@@ -19,41 +19,45 @@ namespace crud_csharp.Controller
         public List<Endpoint> ListAll()
         {
             var listAllEndpointService = new ListAllEndpointService();
-            return listAllEndpointService.Execute(null);
+            return listAllEndpointService.Execute();
         }
 
         public Endpoint FindOne(string identifier)
         {
+            if (string.IsNullOrEmpty(identifier))
+                throw new AppException(I18nService.GetTranslate("INVALID_SERIAL_NUMBER"));
+
             var findEndpointBySerialNumberService = new FindEndpointBySerialNumberService();
             return findEndpointBySerialNumberService.Execute(identifier);
         }
 
         public Endpoint Create(EndpointVO endpointVo)
         {
-            var endpoint = new Endpoint()
-            {
-                serialNumber = endpointVo.serialNumber,
-                meterFirmwareVersion = endpointVo.meterFirmwareVersion,
-            };
-            EndpointValidator.ValidateModelId(endpointVo.meterModelId, endpoint);
-            EndpointValidator.ValidateSwitchState(endpointVo.switchState, endpoint);
+            if (string.IsNullOrEmpty(endpointVo.serialNumber))
+                throw new AppException(I18nService.GetTranslate("INVALID_SERIAL_NUMBER"));
+            if (string.IsNullOrEmpty(endpointVo.meterFirmwareVersion))
+                throw new AppException(I18nService.GetTranslate("INVALID_METER_FIRMWARE_VERSION"));
+            int number;
+            if (string.IsNullOrEmpty(endpointVo.meterNumber) || !int.TryParse(endpointVo.meterNumber, out number))
+                throw new AppException(I18nService.GetTranslate("INVALID_METER_NUMBER"));
+            
             var createEndpointService = new CreateEndpointService();
-            return createEndpointService.Execute(endpoint);
+            return createEndpointService.Execute(endpointVo);
         }
 
         public Endpoint Edit(EndpointVO endpointVo)
         {
-            var endpoint = new Endpoint()
-            {
-                serialNumber = endpointVo.serialNumber,
-            };
-            EndpointValidator.ValidateSwitchState(endpointVo.switchState, endpoint);
+            if (string.IsNullOrEmpty(endpointVo.serialNumber))
+                throw new AppException(I18nService.GetTranslate("INVALID_SERIAL_NUMBER"));
+
             var editEndpointService = new EditEndpointService();
-            return editEndpointService.Execute(endpoint);
+            return editEndpointService.Execute(endpointVo);
         }
 
         public Endpoint Delete(string identifier)
         {
+            if (string.IsNullOrEmpty(identifier))
+                throw new AppException(I18nService.GetTranslate("INVALID_SERIAL_NUMBER"));
             var deleteEndpointService = new DeleteEndpointService();
             return deleteEndpointService.Execute(identifier);
         }

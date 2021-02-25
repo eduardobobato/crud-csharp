@@ -1,4 +1,5 @@
 ﻿using crud_csharp.DAO;
+using crud_csharp.exceptions;
 using crud_csharp.Model;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,10 @@ namespace crud_csharp.Service
 
         public Endpoint Execute(string identifier)
         {
-            return dao.Delete(dao.FindOne(identifier));
+            var endpoint = dao.FindOne(identifier);
+            if (endpoint == null)
+                throw new AppException(I18nService.GetTranslate("DONT_HAVE_SERIAL_NUMBER"));
+            return dao.Delete(endpoint);
         }
     }
 }
